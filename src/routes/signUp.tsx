@@ -31,6 +31,11 @@ export default function SignUP() {
 
             if (response.ok) {
                 console.log("Usuario creado exitosamente")
+                setUsername("");
+                setEmail("");
+                setPassword("");
+                setCedula("");
+                alert("Usuario creado exitosamente");
             } else {
                 console.log("Error al crear el usuario")
             }
