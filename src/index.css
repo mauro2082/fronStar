@@ -1,0 +1,102 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(34,  37, 41);
+  color: white
+}
+
+label {
+  display: block;
+}
+
+.form {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 200px;
+  color: white;
+}
+
+.divlog{
+  background-color:   rgb(34,  37, 41);
+  border-radius: 20px;
+  padding: 10%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+
+input[type="text"],
+[type="password"] {
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 5px 0 10px 0;
+  background: rgb(34,  37, 41);
+  box-shadow: 0 0 15px rgba(245, 247, 245, 0.100);
+  border-radius: 7px;
+  color: white; 
+  font-size: 1.1em;
+  
+}
+
+input[type="text"],
+[type="email"] {
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 5px 0 10px 0;
+  background: rgb(34,  37, 41);
+  box-shadow: 0 0 15px rgba(245, 247, 245, 0.100);
+  border-radius: 7px;
+  color: white; 
+  font-size: 1.1em;
+  
+}
+
+input[type="button"],
+button {
+  background-color: rgb(109,  160, 117);
+  padding: 10px;
+  border: 1;
+  min-width: 100px;
+  border-radius: 6px;
+  color: white; 
+  margin-top: 10px; 
+}
+
+nav {
+  background-color: #1a1b1c;
+}
+
+nav ul {
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 10px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.dashboard {
+  width: 500px;
+  margin: auto;
+}
+
+.errorMessage {
+  background-color: #f2dede;
+  color: #a94442;
+  padding: 10px;
+}
