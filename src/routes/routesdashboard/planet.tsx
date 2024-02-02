@@ -2,11 +2,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 interface Planet {
-  name: string;
-  climate: string;
-  diameter: string;
-  // Agrega más propiedades según sea necesario
-}
+    name: string;
+    climate: string;
+    diameter: string;
+    gravity: string;
+    orbital_period: string;
+    population: string;
+    rotation_period: string;
+    surface_water: string;
+    terrain: string;
+    url: string;
+    created: string;
+    edited: string;
+    films: string[]; // Array de URLs a las películas
+    residents: string[]; // Array de URLs a los residentes
+  }
+  
 
 const Planet = () => {
   const [planets, setPlanets] = useState<Planet[]>([]);
@@ -43,12 +54,20 @@ const Planet = () => {
 
       {selectedPlanet && (
         <div>
-          <h2>Detalles de {selectedPlanet}</h2>
-          {/* Puedes mostrar más detalles del planeta seleccionado aquí */}
-          <p>Climate: {planets.find((planet) => planet.name === selectedPlanet)?.climate}</p>
-          <p>Diameter: {planets.find((planet) => planet.name === selectedPlanet)?.diameter}</p>
-          {/* Agrega más propiedades según sea necesario */}
-        </div>
+        <h2>Detalles de {selectedPlanet}</h2>
+        {/* Puedes mostrar más detalles del planeta seleccionado aquí */}
+        <p>Climate: {planets.find((planet) => planet.name === selectedPlanet)?.climate}</p>
+        <p>Diameter: {planets.find((planet) => planet.name === selectedPlanet)?.diameter}</p>
+        <p>Gravity: {planets.find((planet) => planet.name === selectedPlanet)?.gravity}</p>
+        <p>Orbital Period: {planets.find((planet) => planet.name === selectedPlanet)?.orbital_period}</p>
+        <p>Population: {planets.find((planet) => planet.name === selectedPlanet)?.population}</p>
+        <p>Rotation Period: {planets.find((planet) => planet.name === selectedPlanet)?.rotation_period}</p>
+        <p>Surface Water: {planets.find((planet) => planet.name === selectedPlanet)?.surface_water}</p>
+        <p>Terrain: {planets.find((planet) => planet.name === selectedPlanet)?.terrain}</p>
+        <p>URL: {planets.find((planet) => planet.name === selectedPlanet)?.url}</p>
+        {/* Agrega más propiedades según sea necesario */}
+      </div>
+      
       )}
     </div>
   );

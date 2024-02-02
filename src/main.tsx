@@ -27,14 +27,13 @@ const router = createBrowserRouter([
       {
         path: "/DashBoard",
         element: <Dashboard />,
-        children:[
-          {
-            path: "/Planet",
-            element: <Planet />,
-          }
-        ]
+        
       }
     ]
+  },
+  {
+    path: "/Planet",
+    element: <Planet />,
   }
 ])
 
