@@ -5,6 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./routes/login.tsx"
 import SignUp from "./routes/signUp.tsx"
+import Planet from './routes/routesdashboard/planet.tsx';
 import Dashboard from './routes/dashboard.tsx';
 import ProtectedRoute from './routes/protectedRoute.tsx';
 import { AuthProvider } from './auth/AuthProvider.tsx';
@@ -25,7 +26,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/DashBoard",
-        element: <Dashboard />
+        element: <Dashboard />,
+        children:[
+          {
+            path: "/Planet",
+            element: <Planet />,
+          }
+        ]
       }
     ]
   }

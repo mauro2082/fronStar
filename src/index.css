@@ -74,6 +74,7 @@ button {
 
 nav {
   background-color: #1a1b1c;
+  
 }
 
 nav ul {
@@ -83,6 +84,8 @@ nav ul {
 nav ul li {
   display: inline-block;
   padding: 10px;
+  margin-right: 145px;
+  transition: background-color 0.3s;
 }
 
 a {
@@ -103,4 +106,8 @@ a {
 
 button:active {
   color: rgba(245, 247, 245, 0.100);
+}
+
+nav ul li:hover {
+  background-color: #555;
 }
