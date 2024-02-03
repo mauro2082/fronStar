@@ -15,19 +15,22 @@ export default function Layoutdashboard({children}:DefaultLayaoutProps){
                             <Link to="/">Inicio</Link>
                         </li>
                         <li>
-                            <Link to="/Naves">Naves</Link>
+                            <Link to="/Starship">Naves</Link>
                         </li>
                         <li>
-                            <Link to="/Planet">Planet</Link>
+                            <Link to="/Planet">Planetas</Link>
                         </li>
                         <li>
-                            <Link to="/Peliculas">Peliculas</Link>
+                            <Link to="/Film">Peliculas</Link>
                         </li>
                         <li>
-                            <Link to="/Personajes">Personajes</Link>
+                            <Link to="/Person">Personajes</Link>
                         </li>
                         <li>
-                            <Link to="/Razas">Razas</Link>
+                            <Link to="/Species">Especies</Link>
+                        </li>
+                        <li>
+                            <Link to="/Species">Vehiculos</Link>
                         </li>
                     </ul>
                 </nav>

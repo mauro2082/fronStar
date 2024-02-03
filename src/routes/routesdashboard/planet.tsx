@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Layoutdashboard from "../../layout/layoutdashboard"
+
 interface Planet {
     name: string;
     climate: string;
@@ -41,9 +43,10 @@ const Planet = () => {
   };
 
   return (
-    <div>
+    <Layoutdashboard>
+    <div className='dash1'>
       <h1>Lista de Planetas</h1>
-      <select value={selectedPlanet} onChange={handlePlanetChange}>
+      <select value={selectedPlanet} onChange={handlePlanetChange}className='dash2'>
         <option value="">Selecciona un planeta</option>
         {planets.map((planet) => (
           <option key={planet.name} value={planet.name}>
@@ -53,8 +56,8 @@ const Planet = () => {
       </select>
 
       {selectedPlanet && (
-        <div>
-        <h2>Detalles de {selectedPlanet}</h2>
+        <div className='dash'>
+        <h2 className='h2dash'>Detalles de {selectedPlanet}</h2>
         {/* Puedes mostrar más detalles del planeta seleccionado aquí */}
         <p>Climate: {planets.find((planet) => planet.name === selectedPlanet)?.climate}</p>
         <p>Diameter: {planets.find((planet) => planet.name === selectedPlanet)?.diameter}</p>
@@ -70,6 +73,7 @@ const Planet = () => {
       
       )}
     </div>
+    </Layoutdashboard>
   );
 };
 

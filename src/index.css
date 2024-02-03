@@ -84,7 +84,7 @@ nav ul {
 nav ul li {
   display: inline-block;
   padding: 10px;
-  margin-right: 145px;
+  margin-right: 105px;
   transition: background-color 0.3s;
 }
 
@@ -110,4 +110,37 @@ button:active {
 
 nav ul li:hover {
   background-color: #555;
+}
+
+.img1 {
+  width: 500px; /* Puedes ajustar el ancho según tus necesidades */
+  height: auto; /* Esto mantiene la proporción original de la imagen */
+}
+.im1d{
+  text-align: center;
+  padding: 140px;
+}
+
+.dash{
+  background-color: white;
+  color: black;
+  width: 450px;
+  margin: auto;
+  border-radius: 7px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(245, 247, 245, 0.100);
+}
+.dash1{
+  text-align: center;
+}
+
+.dash2{
+  font-size: 20px;
+  text-align: center;
+}
+
+.h2dash{
+  background-color:  #008f39;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
