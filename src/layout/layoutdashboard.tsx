@@ -30,7 +30,13 @@ export default function Layoutdashboard({children}:DefaultLayaoutProps){
                             <Link to="/Species">Especies</Link>
                         </li>
                         <li>
-                            <Link to="/Species">Vehiculos</Link>
+                            <Link to="/Vehicle">Vehiculos</Link>
+                        </li>
+                        <li>
+                            <Link to="/Vehicle">Editar Usuario</Link>
+                        </li>
+                        <li>
+                            <Link to="/Vehicle">Salir</Link>
                         </li>
                     </ul>
                 </nav>

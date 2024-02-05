@@ -84,8 +84,9 @@ nav ul {
 nav ul li {
   display: inline-block;
   padding: 10px;
-  margin-right: 105px;
+  margin-right: 60px;
   transition: background-color 0.3s;
+  text-align: center;
 }
 
 a {
@@ -109,7 +110,7 @@ button:active {
 }
 
 nav ul li:hover {
-  background-color: #555;
+  background-color: #555555;
 }
 
 .img1 {
