@@ -74,19 +74,24 @@ button {
 
 nav {
   background-color: #1a1b1c;
+  display: flex;
+    justify-content: space-between; /* Alinea los elementos al principio y al final */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 2.3px; /* Agrega relleno según sea necesario */
   
 }
 
 nav ul {
+  list-style: none;
+  display: flex;
   margin: 0;
+
 }
 
-nav ul li {
-  display: inline-block;
-  padding: 10px;
-  margin-right: 60px;
-  transition: background-color 0.3s;
-  text-align: center;
+nav li {
+  margin-right: 145px;
+  margin-left: 20;
+ 
 }
 
 a {
@@ -111,11 +116,13 @@ button:active {
 
 nav ul li:hover {
   background-color: #555555;
+
 }
 
 .img1 {
-  width: 500px; /* Puedes ajustar el ancho según tus necesidades */
+  width: 700px; /* Puedes ajustar el ancho según tus necesidades */
   height: auto; /* Esto mantiene la proporción original de la imagen */
+  margin-top:11%
 }
 .im1d{
   text-align: center;
@@ -144,4 +151,21 @@ nav ul li:hover {
   background-color:  #008f39;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  nav {
+      flex-direction: column; /* Cambia la dirección a columna en pantallas más pequeñas */
+      align-items: stretch; /* Estirar los elementos verticalmente */
+  }
+
+  nav ul {
+      margin-top: 10px; /* Espaciado entre elementos en pantallas más pequeñas */
+  }
+
+  nav li {
+      margin: 0; /* Elimina el margen entre elementos en pantallas más pequeñas */
+  }
 }
