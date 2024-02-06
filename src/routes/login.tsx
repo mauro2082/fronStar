@@ -1,14 +1,14 @@
-import DefaultLayout from "../layout/defaultLayout";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthProvider";
 import { API_URL } from "../auth/constants";
 import { Navigate } from "react-router-dom";
+import DefaultLayout from "../layout/defaultLayout";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsAuthenticated } = useAuth();
+  const { isAuthenticated, setIsAuthenticated, setUserId } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -29,21 +29,22 @@ export default function Login() {
       if (response.ok) {
         const data = await response.json();
         const accessToken = data.access_token;
+        const userId = data.userId;
 
-        if (accessToken) {
-          console.log("Token de acceso:", accessToken);
-
-          // Establecer el estado de autenticación como true
+        if (accessToken && userId) {
           setIsAuthenticated(true);
+          setUserId(userId);
+
+          console.log("Token de acceso:", accessToken);
 
           setUsername("");
           setPassword("");
           alert("BIENVENIDO");
 
           // Redirigir al usuario a la página de Dashboard u otra página segura
-          navigate("/Dashboard");
+          navigate("/dashboard");
         } else {
-          console.log("Token de acceso no presente en la respuesta");
+          console.log("Token de acceso o ID no presente en la respuesta");
         }
       } else {
         console.log("Usuario Inválido");
@@ -54,28 +55,42 @@ export default function Login() {
     }
   }
 
-  if (useAuth().isAuthenticated) {
+  if (isAuthenticated) {
     return <Navigate to="/dashboard" />;
-  } else {
-    console.log("fallo");
   }
-    return (
-        <DefaultLayout>
-            <form className="form" onSubmit={handleSubmit}>
-                <div className="divlog">
-                    <div>
-                        <h1>INGRESO FAN S.W</h1>
-                        <label>Usuario:</label>
-                        <input type="text" id="username" name="username" required placeholder="Usuario" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    </div>
-                    <div>
-                        <label >Contraseña:</label>
-                        <input type="password" id="password" name="password" required placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    </div>
 
-                    <button type="submit">INGRESAR</button>
-                </div>
-            </form>
-        </DefaultLayout>
-    );
+  return (
+    <DefaultLayout>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="divlog">
+          <div>
+            <h1>INGRESO FAN S.W</h1>
+            <label>Usuario:</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required
+              placeholder="Usuario"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Contraseña:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              required
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button type="submit">INGRESAR</button>
+        </div>
+      </form>
+    </DefaultLayout>
+  );
 }

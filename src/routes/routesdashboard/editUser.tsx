@@ -1,79 +1,93 @@
-import { useContext, createContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import Layoutdashboard from '../../layout/layoutdashboard';
+import { useAuth } from '../../auth/AuthProvider';  // Asegúrate de importar correctamente
 
-interface User {
-  id: string;
-  cedula: string;
-  email: string;
-  username: string;
-  password: string;
+interface EditUserProps {
+  // userId ya no es obligatorio aquí, ya que lo obtendrás del contexto
 }
 
-interface AuthContextProps {
-  isAuthenticated: boolean;
-  user: User | null;
-  editUser: (updatedUser: Partial<User>) => void;
-}
+const EditUser: React.FC<EditUserProps> = () => {
+  const { userId } = useAuth();  // Obtén el userId del contexto
 
-interface AuthProviderProps {
-  children: React.ReactNode;
-}
-
-const AuthContext = createContext<AuthContextProps>({
-  isAuthenticated: false,
-  user: null,
-  editUser: () => {},
-});
-
-export function AuthProvider({ children }: AuthProviderProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
+  const [userData, setUserData] = useState({
+    id: '',
+    cedula: '',
+    username: '',
+    email: '',
+    password: '',
+  });
 
   useEffect(() => {
-    // Simula la obtención del usuario autenticado desde tu backend
-    const fetchUserData = async () => {
-      try {
-        // Realiza una llamada a tu API para obtener la información del usuario
-        const response = await fetch('https://api.example.com/user', {
-          headers: {
-            Authorization: `Bearer YOUR_ACCESS_TOKEN`, // Reemplaza con tu token real
-          },
-        });
-
-        if (response.ok) {
-          const userData = await response.json();
-          setUser(userData);
-          setIsAuthenticated(true);
-        } else {
-          setUser(null);
-          setIsAuthenticated(false);
-        }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
-
-  const editUser = (updatedUser: Partial<User>) => {
-    // Verifica si el usuario está autenticado y si el ID coincide
-    if (isAuthenticated && user && user.id === updatedUser.id) {
-      // Simula la actualización de la información del usuario en tu backend
-      // Puedes hacer una llamada a tu API para actualizar la información
-      // Aquí deberías manejar la lógica real de actualización
-      const updatedUserData = { ...user, ...updatedUser };
-      console.log('Updated user data:', updatedUserData);
-      setUser(updatedUserData);
-    } else {
-      console.error('Unauthorized or invalid user ID for edit');
+    if (userId) {
+      // Realizar una solicitud al servidor para obtener los detalles del usuario por ID
+      fetch(`http://localhost:3000/users/${userId}`)
+        .then((response) => response.json())
+        .then((data) => setUserData(data))
+        .catch((error) => console.error('Error fetching user details:', error));
     }
+  }, [userId]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSave = () => {
+    // Enviar los cambios al servidor para actualizar la información del usuario
+    console.log("este es el tipo de dato user id:", typeof userId);
+    const userIdAsString = userId ? userId.toString() : '';
+    console.log("este es el tipo de dato:", typeof userIdAsString);
+    fetch(`http://localhost:3000/users/${userId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => response.json())
+      .then((updatedUserData) => {
+        console.log('User details updated successfully:', updatedUserData);
+        // Puedes realizar alguna acción después de la actualización, como redirigir a otra página
+        setUserData({
+          id: '',
+          cedula: '',
+          username: '',
+          email: '',
+          password: '',
+        });
+         
+          
+          alert("USUARIO EDITADO CON EXITO")
+      })
+      .catch((error) => console.error('Error updating user details:', error));
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, editUser }}>
-      {children}
-    </AuthContext.Provider>
+    <Layoutdashboard>
+      <div className="form">
+        <h1>Editar Usuario</h1>
+        <div>
+          <label>Cedula:</label>
+          <input type="text" name="cedula" value={userData.cedula} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Username:</label>
+          <input type="text" name="username" value={userData.username} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input type="email" name="email" value={userData.email} onChange={handleChange} />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input type="password" name="password" value={userData.password} onChange={handleChange} />
+        </div>
+        <button onClick={handleSave}>GUARDAR CAMBIOS</button>
+      </div>
+    </Layoutdashboard>
   );
-}
+};
 
-export const useAuth = () => useContext(AuthContext);
+export default EditUser;

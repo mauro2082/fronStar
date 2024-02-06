@@ -14,6 +14,7 @@ import Dashboard from './routes/dashboard.tsx';
 import Vehicle from './routes/routesdashboard/vehicle.tsx';
 import ProtectedRoute from './routes/protectedRoute.tsx';
 import { AuthProvider } from './auth/AuthProvider.tsx';
+import EditUser from './routes/routesdashboard/editUser.tsx';
 
 
 const router = createBrowserRouter([
@@ -61,8 +62,8 @@ const router = createBrowserRouter([
     element: <Vehicle />,
   },
   {
-    path: "/Vehicle",
-    element: <Vehicle />,
+    path: "/EditUser",
+    element: <EditUser />,
   }
 ])
 

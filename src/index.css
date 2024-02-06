@@ -76,7 +76,7 @@ nav {
   background-color: #1a1b1c;
   display: flex;
     justify-content: space-between; /* Alinea los elementos al principio y al final */
-    align-items: center; /* Centra verticalmente los elementos */
+   
     padding: 2.3px; /* Agrega relleno según sea necesario */
   
 }
@@ -116,7 +116,7 @@ button:active {
 
 nav ul li:hover {
   background-color: #555555;
-
+  border-radius: 9%;
 }
 
 .img1 {
@@ -168,4 +168,13 @@ nav ul li:hover {
   nav li {
       margin: 0; /* Elimina el margen entre elementos en pantallas más pequeñas */
   }
+}
+
+.but1{
+  background-color: rgb(163, 64, 64);
+  padding: 3px;
+  border: 1;
+  /*min-width: 100px;*/
+  border-radius: 6px;
+  color: white;  
 }
